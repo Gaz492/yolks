@@ -1,12 +1,4 @@
-FROM ubuntu:bionic
-
-RUN apt-get -q update
-RUN apt-get -y install gnupg software-properties-common
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9 && \
-    apt-add-repository "deb http://repos.azul.com/azure-only/zulu/apt stable main" && \
-    apt-get -q update && \
-    apt-get -y install zulu-8-azure-jdk=8.31.0.2 && \
-    rm -rf /var/lib/apt/lists/*
+FROM        --platform=$TARGETOS/$TARGETARCH azul/zulu-openjdk-debian:8u181
 
 LABEL       author="Michael Parker" maintainer="parker@pterodactyl.io"
 
